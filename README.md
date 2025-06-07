@@ -19,7 +19,7 @@
 
 ## 디렉토리 구조
 
-
+```
 /legacy-todo-app
  ├── server.js           # 메인 애플리케이션 서버
  ├── package.json        # 의존성 정의
@@ -38,6 +38,7 @@
  │       └── app.js      # 프론트엔드 로직
  └── tests/
      └── api.test.js     # 간단한 테스트
+```
 
 ## 설치 및 실행 방법
 
@@ -50,21 +51,24 @@
 
 1. 저장소를 복제합니다:
 
-bash
+```bash
 git clone https://github.com/BangShinChul/legacy-todo-app.git
 cd ~/legacy-todo-app
+```
 
 2. 의존성을 설치합니다:
 
-bash
+```bash
 npm install
+```
 
 ### 실행
 
 애플리케이션을 실행하려면 다음 명령어를 사용합니다:
 
-bash
+```bash
 node server.js
+```
 
 기본적으로 애플리케이션은 http://localhost:3000 에서 실행됩니다.
 
@@ -94,8 +98,9 @@ node server.js
 
 기본적인 테스트를 실행하려면 다음 명령어를 사용합니다:
 
-bash
+```bash
 npm test
+```
 
 ## 라이선스
 
