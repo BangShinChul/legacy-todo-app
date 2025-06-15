@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearCompletedBtn = document.getElementById('clear-completed');
   const filterBtns = document.querySelectorAll('.filter-btn');
   
+  // API 베이스 URL 설정 (현재 도메인 기반)
+  const API_BASE_URL = `${window.location.protocol}//${window.location.host}/api`;
+  
   // 현재 필터 상태
   let currentFilter = 'all';
   
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Todo 항목 가져오기
   function fetchTodos() {
-    fetch('/api/todos')
+    fetch(`${API_BASE_URL}/todos`)
       .then(response => response.json())
       .then(todos => {
         renderTodos(todos);
@@ -99,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
-    fetch('/api/todos', {
+    fetch(`${API_BASE_URL}/todos`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -118,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Todo 항목 완료 상태 토글
   function toggleTodoCompleted(id, completed) {
-    fetch(`/api/todos/${id}`, {
+    fetch(`${API_BASE_URL}/todos/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -136,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Todo 항목 삭제
   function deleteTodo(id) {
-    fetch(`/api/todos/${id}`, {
+    fetch(`${API_BASE_URL}/todos/${id}`, {
       method: 'DELETE'
     })
       .then(() => {
@@ -149,14 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 완료된 항목 모두 삭제
   function clearCompleted() {
-    fetch('/api/todos')
+    fetch(`${API_BASE_URL}/todos`)
       .then(response => response.json())
       .then(todos => {
         const completedTodos = todos.filter(todo => todo.completed);
         
         // 완료된 항목을 순차적으로 삭제
         const deletePromises = completedTodos.map(todo => {
-          return fetch(`/api/todos/${todo.id}`, {
+          return fetch(`${API_BASE_URL}/todos/${todo.id}`, {
             method: 'DELETE'
           });
         });
